@@ -3,3 +3,5 @@
 /home/tester/.local/lib/python3.8/site-packages/openhands/datasets/isolated/base.py
 
 /home/tester/.local/lib/python3.8/site-packages/openhands/apis/inference.py
+
+/home/tester/.local/lib/python3.8/site-packages/mediapipe/modules/pose_landmark/pose_landmark_heavy.tflite
