@@ -14,7 +14,9 @@ Make sure to have a camera connected to your PC and run setup.py to run the proj
 
 Please make sure to change all paths accordingly, there are a lot of them, also in the config.yaml file, for more information on that file, please have a look at the openhands github page
 
-Please move the fike "pose_landmark_heavy.tflite" to the path mentioned for it in the "importantPaths.txt" file
+Please move the file "pose_landmark_heavy.tflite" to the path mentioned for it in the "importantPaths.txt" file
+
+You may move the directory "finalProject" to home so the paths mentioned in the code will automatically match, the name of my system user is "tester", if you are running this project from a fresh installation you want to call it the same for an easier time
 
 For more info about the paths and what to change, I will do so per request, so please mail me at "talmc100@gmail.com" for more info if needed.
 
