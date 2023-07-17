@@ -1,9 +1,12 @@
 import socket
 import threading
 
-HOST = socket.gethostbyname(socket.gethostname())
+# HOST = socket.gethostbyname(socket.gethostname())
+
+HOST = "192.168.1.131"
 print(HOST)
-PORT = 9999
+
+PORT = 1234
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((HOST, PORT))
@@ -13,9 +16,11 @@ server.listen()
 clients = []
 nicknames = []
 
+
 def broadcast(message):
     for client in clients:
         client.send(message)
+
 
 def handle_connection(client):
     stop = False
@@ -31,6 +36,7 @@ def handle_connection(client):
             broadcast(f"{nickname} left the chat!".encode('utf-8'))
             stop = True
 
+
 def main():
     print("Server is running")
     while True:
@@ -41,7 +47,7 @@ def main():
 
         nickname = client.recv(1024).decode('utf-8')
         nicknames.append(nickname)
-        nicknames.append(client)
+        clients.append(client)
         print(f"Nickname is {nickname}")
 
         broadcast(f"{nickname} joined the chat!".encode('utf-8'))
@@ -50,6 +56,3 @@ def main():
 
         thread = threading.Thread(target=handle_connection, args=(client,))
         thread.start()
-
-if __name__ == '__main__':
-    main()
