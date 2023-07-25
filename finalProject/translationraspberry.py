@@ -1,12 +1,6 @@
-import os
-import sys
-import mediapipe_extract as ext
-import record_vid
-import prediction
-import nlp
-
 
 def clean_directory(directory):
+    import os
     for filename in os.listdir(directory):
         filepath = os.path.join(directory, filename)
         try:
@@ -17,6 +11,7 @@ def clean_directory(directory):
 
 
 def get_next_path(directory):
+    import os
     directory_index = "/home/tester/finalProject"
     # Create a file to keep track of the last returned path
     state_file = os.path.join(directory_index, "index.txt")
@@ -44,12 +39,16 @@ def get_next_path(directory):
 
 
 def num_files(directory):
+    import os
     files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
     num_dir = len(files)
     return num_dir
 
 
 def extraction_loop(directory):
+    import os
+    import sys
+    import mediapipe_extract as ext
     video_name = os.path.basename(get_next_path(directory))
     ext.extraction(video_name)
     print("Key point Extracted from Video")
@@ -64,6 +63,8 @@ def clear_file(filename):
 
 
 def delete_last_file(directory):
+    import os
+
     # Get a list of all files in the directory
     file_list = os.listdir(directory)
 
@@ -75,28 +76,25 @@ def delete_last_file(directory):
 
 
 def main():
+    import prediction
+    import nlp
 
-    with open("/home/tester/finalProject/record_flag.txt", "r") as file:
-        record_flag_var = int(file.read())
+    clear_file("/home/tester/finalProject/sentence.txt")
 
-    with open("/home/tester/finalProject/extraction_flag.txt", "r") as file:
+    with open("/home/tester/finalProject/raspberryExtractionFlag.txt", "r") as file:
         extraction_flag_var = int(file.read())
 
-    if record_flag_var == 0 and extraction_flag_var == 0:
+    if extraction_flag_var == 0:
         with open("/home/tester/finalProject/index.txt", "w") as file:
             file.write("0")
         clear_file("/home/tester/finalProject/translated_content.txt")
-        print("Camera Launched")
-        record_vid.record("/home/tester/finalProject/videos")
-        with open("/home/tester/finalProject/record_flag.txt", "w") as file:
-            file.write("1")
-        with open("/home/tester/finalProject/extraction_flag.txt", "w") as file:
-            file.write("1")
         delete_last_file("/home/tester/finalProject/videos")
         num_dir = num_files("/home/tester/finalProject/videos")
         videos_left = num_dir
         with open("/home/tester/finalProject/extraction_index.txt", "w") as file:
             file.write(str(videos_left))
+        with open("/home/tester/finalProject/raspberryExtractionFlag.txt", "w") as file:
+            file.write("1")
 
     with open("/home/tester/finalProject/extraction_index.txt", "r") as file:
         videos_left = int(file.read())
@@ -108,10 +106,11 @@ def main():
         extraction_loop("/home/tester/finalProject/videos")
 
     print("All Videos Extracted Successfully ")
-    with open("/home/tester/finalProject/record_flag.txt", "w") as file:
-        file.write("0")
 
     with open("/home/tester/finalProject/extraction_flag.txt", "w") as file:
+        file.write("0")
+
+    with open("/home/tester/finalProject/raspberryExtractionFlag.txt", "w") as file:
         file.write("0")
 
     clean_directory("/home/tester/finalProject/videos")

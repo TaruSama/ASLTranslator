@@ -14,11 +14,11 @@ def read_labels_translate():
     sentence = nlp(words)
     message = f"The following generated sentence is: {sentence} | Key words: {str(words)}"
 
-    with open("//home/tester/finalProject/sentence.txt", "w") as file:
+    with open("/home/tester/finalProject/sentence.txt", "w") as file:
         file.write(message)
 
     print(message)
 
-    return message
+
 if __name__ == "__main__":
     read_labels_translate()

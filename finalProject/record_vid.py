@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import os
 
-def record():
+def record(output_dir):
     mp_drawing = mp.solutions.drawing_utils
     mp_hands = mp.solutions.hands
 
@@ -17,7 +17,7 @@ def record():
         recording_delay = 20 # Number of frames (1/2 second at 30 fps) to wait before stopping recording
 
         # Specify directory to save output videos
-        output_dir = '/home/tester/finalProject/videos'
+
         os.makedirs(output_dir, exist_ok=True)
 
         while True:
@@ -90,4 +90,5 @@ def record():
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    record()
+    output_dir = '/home/tester/finalProject/videos'
+    record(output_dir)

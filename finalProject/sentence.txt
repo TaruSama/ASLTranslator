@@ -1,1 +1,1 @@
-The following generated sentence is: A man skunks his head. | Key words: ['skunk']
+The following generated sentence is: A father is drinking candy in the water. | Key words: ['father', 'water', 'candy']
