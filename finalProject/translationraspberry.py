@@ -78,12 +78,11 @@ def delete_last_file(directory):
 def main():
     import prediction
     import nlp
+    import translationraspberryclient
 
     clear_file("/home/tester/finalProject/sentence.txt")
-
     with open("/home/tester/finalProject/raspberryExtractionFlag.txt", "r") as file:
         extraction_flag_var = int(file.read())
-
     if extraction_flag_var == 0:
         with open("/home/tester/finalProject/index.txt", "w") as file:
             file.write("0")
@@ -95,10 +94,8 @@ def main():
             file.write(str(videos_left))
         with open("/home/tester/finalProject/raspberryExtractionFlag.txt", "w") as file:
             file.write("1")
-
     with open("/home/tester/finalProject/extraction_index.txt", "r") as file:
         videos_left = int(file.read())
-
     while videos_left != 0:
         videos_left = videos_left - 1
         with open("/home/tester/finalProject/extraction_index.txt", "w") as file:
@@ -106,22 +103,16 @@ def main():
         extraction_loop("/home/tester/finalProject/videos")
 
     print("All Videos Extracted Successfully ")
-
     with open("/home/tester/finalProject/extraction_flag.txt", "w") as file:
         file.write("0")
-
     with open("/home/tester/finalProject/raspberryExtractionFlag.txt", "w") as file:
         file.write("0")
-
     clean_directory("/home/tester/finalProject/videos")
-
     prediction.translation()
-
     print("All .pkl Files Successfully Translated")
-
     clean_directory("/home/tester/finalProject/videos_after")
-
-    nlp.read_labels_translate()
+    translated_sentence = nlp.read_labels_translate()
+    translationraspberryclient.main(translated_sentence)
 
 
 if __name__ == "__main__":

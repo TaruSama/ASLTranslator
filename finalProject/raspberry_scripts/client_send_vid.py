@@ -1,6 +1,7 @@
 import socket
 import os
 
+
 def send_file(client, file_path):
     file_name = os.path.basename(file_path)
     file_size = os.path.getsize(file_path)
@@ -46,6 +47,9 @@ def fileclient(directory):
     print("All files sent.")
     client.close()
 
+
 if __name__ == "__main__":
     directory_to_send = r"C:\Users\tshrem\OneDrive - Intel Corporation\Desktop\PyCharmProjectsFolder\BluetoothApp\videos"
     fileclient(directory_to_send)
+
+

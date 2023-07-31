@@ -15,9 +15,11 @@ server.listen()
 clients = []
 nicknames = []
 
+
 def read_message_from_file():
     with open("/home/tester/finalProject/sentence.txt", "r") as file:
         return file.read().strip()
+
 
 def broadcast(message):
     for client in clients:
@@ -40,7 +42,7 @@ def handle_connection(client):
 
 
 def main():
-    print("192.168.1.131 | 1234 - Chat Room Host Server")
+    print("192.168.1.131:1234 - Chat Room Host Server")
     while True:
         client, addr = server.accept()
         print(f"Connected to {addr}")
@@ -58,15 +60,9 @@ def main():
 
         thread = threading.Thread(target=handle_connection, args=(client,))
         thread.start()
-        
-        welcome_message = "\n Welcome to the chat room!"
-        client.send(welcome_message.encode('utf-8'))
 
-        while True:
-            time.sleep(10)
-            translated_sentence = read_message_from_file()
-            print(f"Server attempt to send the following sentence: {translated_sentence}")
-            broadcast(translated_sentence.encode('utf-8'))
+        welcome_message = "\nWelcome to the chat room!"
+        client.send(welcome_message.encode('utf-8'))
 
 
 if __name__ == "__main__":
