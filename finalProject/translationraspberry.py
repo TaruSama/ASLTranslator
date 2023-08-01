@@ -80,7 +80,6 @@ def main():
     import nlp
     import translationraspberryclient
 
-    clear_file("/home/tester/finalProject/sentence.txt")
     with open("/home/tester/finalProject/raspberryExtractionFlag.txt", "r") as file:
         extraction_flag_var = int(file.read())
     if extraction_flag_var == 0:

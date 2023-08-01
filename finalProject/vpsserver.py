@@ -16,9 +16,9 @@ clients = []
 nicknames = []
 
 
-def read_message_from_file():
-    with open("/home/tester/finalProject/sentence.txt", "r") as file:
-        return file.read().strip()
+#def read_message_from_file():
+#    with open("/home/tester/finalProject/sentence.txt", "r") as file:
+#        return file.read().strip()
 
 
 def broadcast(message):
