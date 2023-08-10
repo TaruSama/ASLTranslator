@@ -90,5 +90,5 @@ def record(output_dir):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    output_dir = '/home/tester/finalProject/videos'
+    output_dir = '/home/tester/Desktop/videos'
     record(output_dir)

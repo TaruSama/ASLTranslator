@@ -1,14 +1,13 @@
 import filereceive
 import translationraspberry
 
-
 if __name__ == '__main__':
 
     with open("/home/tester/finalProject/receivedfileflag.txt", "r") as file:
         received_file_flag = int(file.read())
 
     if received_file_flag == 0:
-        filereceive.fileserver()
+        filereceive.fileserver("/home/tester/finalProject/videos")
         with open("/home/tester/finalProject/receivedfileflag.txt", "w") as file:
             file.write("1")
 
@@ -16,3 +15,4 @@ if __name__ == '__main__':
 
     with open("/home/tester/finalProject/receivedfileflag.txt", "w") as file:
         file.write("0")
+

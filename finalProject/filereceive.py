@@ -15,7 +15,7 @@ def receive_file(client, file_path, file_size):
     print(f"File received: {file_path}")
     client.send(b"ACK")  # Send acknowledgment back to client for successful file reception
 
-def fileserver():
+def fileserver(destination_directory):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(("192.168.1.131", 9999))
     print("Server is listening on 192.168.1.131:9999")
@@ -34,7 +34,6 @@ def fileserver():
 
         # You can specify a directory where you want to store the received files
         # Replace "/path/to/destination" with the desired directory path
-        destination_directory = "/home/tester/finalProject/videos"
         file_path = os.path.join(destination_directory, file_name)
 
         receive_file(client, file_path, file_size)
@@ -43,4 +42,5 @@ def fileserver():
     server.close()
 
 if __name__ == "__main__":
-    fileserver()
+    destination_directory = "/home/tester/finalProject/videos"
+    fileserver(destination_directory)

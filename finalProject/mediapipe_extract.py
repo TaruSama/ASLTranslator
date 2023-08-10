@@ -209,6 +209,7 @@ def extraction(file_name):
         for path, save_path in tqdm(zip(file_paths, save_paths))
     )
 
+
 """
 if __name__ == "__main__":
     #gen_keypoints_for_video("/home/tester/finalProject/videos/saved1.mp4", "sample1")

@@ -4,6 +4,7 @@ import mediapipe_extract as ext
 import record_vid
 import prediction
 import nlp
+import extraction
 
 
 def clean_directory(directory):
@@ -98,14 +99,16 @@ def main():
         with open("/home/tester/finalProject/extraction_index.txt", "w") as file:
             file.write(str(videos_left))
 
+    """
     with open("/home/tester/finalProject/extraction_index.txt", "r") as file:
         videos_left = int(file.read())
-
     while videos_left != 0:
         videos_left = videos_left - 1
         with open("/home/tester/finalProject/extraction_index.txt", "w") as file:
             file.write(str(videos_left))
         extraction_loop("/home/tester/finalProject/videos")
+    """
+    extraction.main("/home/tester/finalProject/videos")
 
     print("All Videos Extracted Successfully ")
     with open("/home/tester/finalProject/record_flag.txt", "w") as file:
