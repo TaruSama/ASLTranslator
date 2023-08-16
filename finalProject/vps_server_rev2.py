@@ -34,7 +34,7 @@ def handle_connection(client, nickname):
             if message == f"{nickname}: CHANGE_MODE_2":
                 print("MODE 2 detected")
                 mode2()
-                message_mode2 = "Mode 2 Enabled successfully - Happy translating!"
+                message_mode2 = "Mode 2 Enabled successfully, Upload video to server using raspberry!"
                 broadcast(message_mode2.encode('utf-8'))
             elif message == f"{nickname}: CHANGE_MODE_1":
                 print("MODE 1 detected")

@@ -41,6 +41,8 @@ def fileserver(destination_directory):
     client.close()
     server.close()
 
+
+
 if __name__ == "__main__":
-    destination_directory = "/home/tester/finalProject/videos"
+    destination_directory = "/home/tester/finalProject/mode2_videos"
     fileserver(destination_directory)

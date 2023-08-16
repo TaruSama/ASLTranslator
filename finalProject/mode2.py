@@ -151,6 +151,6 @@ def record_delete_from_video(input_video_path, output_dir):
 
 
 if __name__ == "__main__":
-    input_video_path = "/home/tester/finalProject/output.mp4"
+    input_video_path = "/home/tester/finalProject/mode2_videos/output.mp4"
     output_dir = "/home/tester/finalProject/mode2_videos/"
     record_delete_from_video(input_video_path, output_dir)

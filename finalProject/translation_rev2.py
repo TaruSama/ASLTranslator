@@ -1,11 +1,11 @@
 import prediction
-import nlp
 import nlp_rev2
 import client
 import extraction
 import record_vid_rev2
 import file_receive
 import os
+import mode2
 
 
 def clean_directory(directory):
@@ -66,24 +66,38 @@ def main():
     translated_txt = "/home/tester/finalProject/translated_content.txt"
     dir_pkl = "/home/tester/finalProject/videos_after"
     switch_mode_flag = "/home/tester/finalProject/switch_mode_flag.txt"
+    mode2_vid = "/home/tester/finalProject/mode2_videos/output.mp4"
+    dir_vid_mode2 = "/home/tester/finalProject/mode2_videos/"
+    mode2_dir_pkl = "/home/tester/finalProject/mode2_videos_after"
 
     with open(switch_mode_flag, 'r') as file:
         mode_flag = file.read()
     clear_file(translated_txt)
-#   file_receive.fileserver(dir_vid)
-#   delete_last_file(dir_vid)
+
     if mode_flag == "1":
+
         print("Mode 2 is up")
+        file_receive.fileserver(dir_vid_mode2)
+        word_count_list = mode2.record_delete_from_video(mode2_vid, dir_vid_mode2)
+        os.remove(mode2_vid)
+        extraction.main(mode2_vid)
+        clean_directory(mode2_vid)
+        prediction.translation()
+        clean_directory(mode2_dir_pkl)
+        rearrange_lines(translated_txt, word_count_list, translated_txt)
+        translated_sentence = nlp_rev2.main(translated_txt, translated_txt)
+        client.main(translated_sentence)
     else:
+
         print("Mode 1 is up")
-    word_count_list = record_vid_rev2.record_delete(dir_vid)
-    extraction.main(dir_vid)
-    clean_directory(dir_vid)
-    prediction.translation()
-    clean_directory(dir_pkl)
-    rearrange_lines(translated_txt, word_count_list, translated_txt)
-    translated_sentence = nlp_rev2.main(translated_txt, translated_txt)
-    client.main(translated_sentence)
+        word_count_list = record_vid_rev2.record_delete(dir_vid)
+        extraction.main(dir_vid)
+        clean_directory(dir_vid)
+        prediction.translation()
+        clean_directory(dir_pkl)
+        rearrange_lines(translated_txt, word_count_list, translated_txt)
+        translated_sentence = nlp_rev2.main(translated_txt, translated_txt)
+        client.main(translated_sentence)
 
 
 if __name__ == "__main__":

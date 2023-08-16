@@ -194,6 +194,7 @@ def extraction(file_name):
 
     DIR = "/home/tester/finalProject/videos"
     SAVE_DIR = "/home/tester/finalProject/videos_after"
+    MODE2_SAVE_DIR = "/home/tester/finalProject/mode2_videos_after"
 
     os.makedirs(SAVE_DIR, exist_ok=True)
 
@@ -208,27 +209,3 @@ def extraction(file_name):
         delayed(gen_keypoints_for_video)(path, save_path)
         for path, save_path in tqdm(zip(file_paths, save_paths))
     )
-
-
-"""
-if __name__ == "__main__":
-    #gen_keypoints_for_video("/home/tester/finalProject/videos/saved1.mp4", "sample1")
-    n_cores = multiprocessing.cpu_count()
-
-    DIR = "/home/tester/finalProject/videos"
-    SAVE_DIR = "/home/tester/finalProject/videos_after"
-
-    os.makedirs(SAVE_DIR, exist_ok=True)
-
-    file_paths = []
-    save_paths = []
-    for file in os.listdir(DIR):
-        if "output1" in file:
-            file_paths.append(os.path.join(DIR, file))
-            save_paths.append(os.path.join(SAVE_DIR, file.replace(".mp4", "")))
-
-    Parallel(n_jobs=n_cores, backend="threading")(
-        delayed(gen_keypoints_for_video)(path, save_path)
-        for path, save_path in tqdm(zip(file_paths, save_paths))
-    )
-"""

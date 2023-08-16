@@ -31,6 +31,5 @@ def record_video(output_file, width=640, height=480):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    output_file = "example_test_videos/video_example/output.mp4"  # Output video file name with .mp4 extension
-
+    output_file = "/home/tester/finalProject/mode2_videos/output.mp4"  # Output video file name with .mp4 extension
     record_video(output_file)
