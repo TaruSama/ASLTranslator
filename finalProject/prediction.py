@@ -11,5 +11,7 @@ def translation():
     else:
         model.compute_test_accuracy()
 
+    print("All .pkl Files Successfully Translated")
+
 if __name__ == "__main__":
     translation()
