@@ -69,15 +69,11 @@ def main():
 
         client.send("You are now connected! \n".encode('utf-8'))
 
-        broadcast("Please type: CHANGE_MODE_2 or CHANGE_MODE_1 to change modes".encode('utf-8'))
-
         thread = threading.Thread(target=handle_connection, args=(client, nickname))
         thread.start()
 
-        welcome_message = "Welcome to the chat room! \n"
+        welcome_message = "Welcome to the chat room! - Please type: CHANGE_MODE_2 or CHANGE_MODE_1 to change modes"
         client.send(welcome_message.encode('utf-8'))
-
-        broadcast("Please type: CHANGE_MODE_2 or CHANGE_MODE_1 to change modes".encode('utf-8'))
 
 
 if __name__ == "__main__":

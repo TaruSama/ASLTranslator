@@ -191,21 +191,48 @@ def dump_pose_for_dataset(
 
 def extraction(file_name):
     n_cores = multiprocessing.cpu_count()
+    switch_mode_flag = "/home/tester/finalProject/switch_mode_flag.txt"
 
-    DIR = "/home/tester/finalProject/videos"
-    SAVE_DIR = "/home/tester/finalProject/videos_after"
-    MODE2_SAVE_DIR = "/home/tester/finalProject/mode2_videos_after"
+    with open(switch_mode_flag, 'r') as file:
+        mode_flag = file.read()
 
-    os.makedirs(SAVE_DIR, exist_ok=True)
+    if mode_flag == "1":
 
-    file_paths = []
-    save_paths = []
-    for file in os.listdir(DIR):
-        if file_name in file:
-            file_paths.append(os.path.join(DIR, file))
-            save_paths.append(os.path.join(SAVE_DIR, file.replace(".mp4", "")))
+        print("MODE 2 EXTRACTION UP")
+        DIR = "/home/tester/finalProject/mode2_videos"
+        SAVE_DIR = "/home/tester/finalProject/videos_after"
+        SAVE_DIR_DESKTOP = "/home/tester/Desktop/videos"
 
-    Parallel(n_jobs=n_cores, backend="threading")(
-        delayed(gen_keypoints_for_video)(path, save_path)
-        for path, save_path in tqdm(zip(file_paths, save_paths))
-    )
+        os.makedirs(SAVE_DIR, exist_ok=True)
+
+        file_paths = []
+        save_paths = []
+        for file in os.listdir(DIR):
+            if file_name in file:
+                file_paths.append(os.path.join(DIR, file))
+                save_paths.append(os.path.join(SAVE_DIR, file.replace(".mp4", "")))
+
+        Parallel(n_jobs=n_cores, backend="threading")(
+            delayed(gen_keypoints_for_video)(path, save_path)
+            for path, save_path in tqdm(zip(file_paths, save_paths))
+        )
+
+    else:
+        print("MODE 1 EXTRACTION UP")
+        DIR = "/home/tester/finalProject/videos"
+        SAVE_DIR = "/home/tester/finalProject/videos_after"
+        SAVE_DIR_DESKTOP = "/home/tester/Desktop/videos"
+
+        os.makedirs(SAVE_DIR, exist_ok=True)
+
+        file_paths = []
+        save_paths = []
+        for file in os.listdir(DIR):
+            if file_name in file:
+                file_paths.append(os.path.join(DIR, file))
+                save_paths.append(os.path.join(SAVE_DIR, file.replace(".mp4", "")))
+
+        Parallel(n_jobs=n_cores, backend="threading")(
+            delayed(gen_keypoints_for_video)(path, save_path)
+            for path, save_path in tqdm(zip(file_paths, save_paths))
+        )

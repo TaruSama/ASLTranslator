@@ -16,7 +16,7 @@ def process_videos(video_files, batch_size=4):
 def main(video_dir):
     import os
     video_files = [file for file in os.listdir(video_dir) if file.endswith(".mp4")]
-    process_videos(video_files, batch_size=4)
+    process_videos(video_files, batch_size=8)
     print("All processes have finished.")
 
 
