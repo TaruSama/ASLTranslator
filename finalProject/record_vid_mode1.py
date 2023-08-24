@@ -4,22 +4,6 @@ import os
 import time
 
 
-# def delete_last_index_files(folder_path):
-#     files = os.listdir(folder_path)
-#     latest_indices = {}
-#
-#     for filename in files:
-#         prefix, index = filename.split('put')[0], int(filename.split('put')[1].split('.')[0])
-#         latest_indices[prefix] = max(latest_indices.get(prefix, 0), index)
-#
-#     for prefix, latest_index in latest_indices.items():
-#         file_to_delete = f"{prefix}put{latest_index}.mp4"
-#         file_path = os.path.join(folder_path, file_to_delete)
-#         if os.path.exists(file_path):
-#             os.remove(file_path)
-#             print(f"Deleted: {file_to_delete}")
-
-
 def delete_last_index_files(folder_path):
     files = os.listdir(folder_path)
     latest_indices = {}

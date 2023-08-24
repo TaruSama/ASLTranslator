@@ -11,10 +11,14 @@ server.listen()
 
 clients = []
 nicknames = []
+
+
 def mode2():
     switch_mode_2_flag = "/home/tester/finalProject/switch_mode_flag.txt"
     with open(switch_mode_2_flag, 'w') as file:
         file.write("1")
+
+
 def mode1():
     switch_mode_2_flag = "/home/tester/finalProject/switch_mode_flag.txt"
     with open(switch_mode_2_flag, 'w') as file:

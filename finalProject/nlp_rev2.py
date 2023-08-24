@@ -24,11 +24,12 @@ def process_file(input_file, output_file):
 
     return translated_str
 
-# Specify the input and output file paths
+
 def main(input_file_path, output_file_path):
     translated_sentence = process_file(input_file_path, output_file_path)
     print(translated_sentence)
     return translated_sentence
+
 
 if __name__ == "__main__":
     input_file_path = '/home/tester/finalProject/translated_content.txt'

@@ -2,7 +2,6 @@ import prediction
 import nlp_rev2
 import client
 import extraction
-import record_vid_rev2
 import file_receive
 import os
 import record_vid_mode2
@@ -150,7 +149,6 @@ def main():
         transfer_files_with_prefix(dir_pending, dir_vid, prefix)
         extraction.main(dir_vid)
         clean_directory(dir_vid)
-        #transfer_file_by_name(dir_pkl_desktop, dir_pkl, prefix)
         prediction.translation()
         clean_directory(dir_pkl)
         combine_words(translated_txt, translated_txt)

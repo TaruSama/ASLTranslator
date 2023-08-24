@@ -3,6 +3,8 @@ import os
 import record_vid_mode1
 
 counter = 1
+
+
 def receive_file(client, file_path, file_size):
     client.send(b"ACK")  # Send acknowledgment back to client to start receiving the file
 
@@ -16,6 +18,7 @@ def receive_file(client, file_path, file_size):
 
     print(f"File received: {file_path}")
     client.send(b"ACK")  # Send acknowledgment back to client for successful file reception
+
 
 def fileserver(destination_directory):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -35,8 +38,6 @@ def fileserver(destination_directory):
         file_name, file_size = data.split(",")
         file_size = int(file_size)
 
-        # You can specify a directory where you want to store the received files
-        # Replace "/path/to/destination" with the desired directory path
         file_path = os.path.join(destination_directory, file_name)
 
         receive_file(client, file_path, file_size)
@@ -66,8 +67,6 @@ def main():
         fileserver(destination_dir_mode1)
         record_vid_mode1.record_delete_from_video(input_video_path, pending_dir, out_prefix)
         counter = counter + 1
-
-
 
 
 if __name__ == "__main__":
